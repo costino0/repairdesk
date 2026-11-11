@@ -1,0 +1,50 @@
+* {
+    box-sizing: border-box;
+    font-family: Inter, 'sans-serif'
+}
+
+body {
+    margin: 0;
+}
+
+/* TITLE AND DESCRIPTION STYLING */
+
+#header-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    gap: 20px;
+
+    background: #16222A;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to bottom, #3A6073, #16222A);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to bottom, #3A6073, #16222A); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+}
+
+#title,
+#description {
+    margin: 0;
+    color: whitesmoke;
+}
+
+#title {
+    margin-top: 20px;
+}
+
+#description {
+    margin-bottom: 20px;
+}
+
+/* REQUESTS STYLING */
+
+#requests-container {
+    display: flex;
+    flex-direction: column;
+
+    margin: 30px;
+}
+
+#requests-state {
+    margin: 0;
+}
