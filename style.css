@@ -159,6 +159,39 @@ body {
     color: #b00020;
 }
 
+/* REQUESTS STYLING */
+
+#requests {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 15px;
+    margin-top: 20px;
+}
+
+#requests article {
+    padding: 15px 20px;
+    background-color: whitesmoke;
+    border: 1px solid #3A6073;
+    border-radius: 8px;
+    overflow-wrap: anywhere;
+}
+
+#requests h3 {
+    margin: 0;
+    color: #16222A;
+}
+
+#requests h4 {
+    margin: 5px 0 10px 0;
+    font-weight: 500;
+    color: #3A6073;
+}
+
+#requests p {
+    margin: 0;
+    font-size: 14px;
+}
+
 /* RESPONSIVE */
 
 @media (max-width: 640px) {
@@ -190,5 +223,13 @@ body {
 
     #form-btns button {
         width: 100%;
+    }
+
+    #requests-container {
+        margin: 20px;
+    }
+
+    #requests article {
+        padding: 12px 15px;
     }
 }

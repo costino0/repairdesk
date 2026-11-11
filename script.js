@@ -1,17 +1,41 @@
 const requestForm = document.querySelector('#request-form')
 const cancelFormBtn = document.querySelector('#cancel-form-btn')
-const submitFormBtn = document.querySelector('#submit-form-btn')
 const addRepairBtn = document.querySelector('#add-repair-btn')
 const formError = document.querySelector('#form-error')
+const requestsState = document.querySelector('#requests-state')
 
 const name = document.querySelector('#name')
 const model = document.querySelector('#model')
 const problem = document.querySelector('#problem')
 
+const requests = document.querySelector('#requests')
+
 const localRepairs = localStorage.getItem('repairs')
 const repairs = JSON.parse(localRepairs) || []
 
 let id = Number(localStorage.getItem('id')) || 1
+
+function renderRequests(repairs) {
+    requests.innerHTML = ''
+
+    repairs.forEach(repair => {
+        const article = document.createElement('article')
+
+        const title = document.createElement('h3')
+        title.textContent = repair.name
+
+        const modelEl = document.createElement('h4')
+        modelEl.textContent = repair.model
+
+        const problemEl = document.createElement('p')
+        problemEl.textContent = repair.problem
+
+        article.append(title, modelEl, problemEl)
+        requests.append(article)
+    })
+
+    requestsState.textContent = repairs.length === 0 ? 'No repair requests yet' : `Requests: ${repairs.length}`
+}
 
 requestForm.addEventListener('submit', (e) => {
     e.preventDefault()
@@ -36,6 +60,7 @@ requestForm.addEventListener('submit', (e) => {
     problem.value = ''
 
     repairs.push(repairObj)
+    renderRequests(repairs)
 
     localStorage.setItem('repairs', JSON.stringify(repairs))
     localStorage.setItem('id', id)
@@ -53,3 +78,5 @@ cancelFormBtn.addEventListener('click', () => {
     model.value = ''
     problem.value = ''
 })
+
+renderRequests(repairs)
