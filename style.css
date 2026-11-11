@@ -1,6 +1,6 @@
 * {
     box-sizing: border-box;
-    font-family: Inter, 'sans-serif'
+    font-family: Inter, sans-serif;
 }
 
 body {
@@ -28,8 +28,20 @@ body {
     color: whitesmoke;
 }
 
-#title {
+#brand,
+#title,
+#description {
+    margin: 0;
+    color: whitesmoke;
+}
+
+#brand {
     margin-top: 20px;
+    font-size: 18px;
+}
+
+#description {
+    margin-bottom: 20px;
 }
 
 #description {
