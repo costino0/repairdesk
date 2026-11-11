@@ -4,7 +4,9 @@
 }
 
 body {
+    position: relative;
     margin: 0;
+    height: 100vh;
 }
 
 /* TITLE AND DESCRIPTION STYLING */
@@ -20,12 +22,6 @@ body {
     background: -webkit-linear-gradient(to bottom, #3A6073, #16222A);  /* Chrome 10-25, Safari 5.1-6 */
     background: linear-gradient(to bottom, #3A6073, #16222A); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 
-}
-
-#title,
-#description {
-    margin: 0;
-    color: whitesmoke;
 }
 
 #brand,
@@ -44,10 +40,6 @@ body {
     margin-bottom: 20px;
 }
 
-#description {
-    margin-bottom: 20px;
-}
-
 /* REQUESTS STYLING */
 
 #requests-container {
@@ -57,9 +49,117 @@ body {
     margin: 30px;
 }
 
+#requests-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
+
+#add-repair-btn {
+    padding: 8px 16px;
+    background-color: #16222A;
+    color: whitesmoke;
+    border: 1px solid #16222A;
+    border-radius: 4px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+#add-repair-btn:hover {
+    background-color: #3A6073;
+    border-color: #3A6073;
+}
+
 #requests-state {
     margin: 0;
 }
+
+/* FORM STYLING */
+
+#request-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    width: min(90%, 400px);
+    max-height: 90vh;
+    padding: 30px;
+
+    overflow-y: auto;
+
+    background-color: whitesmoke;
+    border: 1px solid #3A6073;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(22, 34, 42, 0.25);
+}
+
+#request-form[hidden] {
+    display: none;
+}
+
+#name-container,
+#model-container,
+#problem-container {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+#request-form label {
+    font-size: 14px;
+    color: #16222A;
+}
+
+#request-form input {
+    padding: 8px 10px;
+    border: 1px solid #3A6073;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+#request-form input:focus {
+    outline: 2px solid #3A6073;
+}
+
+#form-btns {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+#form-btns button {
+    padding: 8px 16px;
+    border-radius: 4px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+#cancel-form-btn {
+    background: transparent;
+    color: #16222A;
+    border: 1px solid #3A6073;
+}
+
+#submit-form-btn {
+    background-color: #16222A;
+    color: whitesmoke;
+    border: 1px solid #16222A;
+}
+
+#form-error {
+    margin: 0;
+    padding: 0;
+    font-size: 14px;
+    color: #b00020;
+}
+
+/* RESPONSIVE */
 
 @media (max-width: 640px) {
     #title {
@@ -74,5 +174,21 @@ body {
 
     #requests-state {
         font-size: 22px;
+    }
+
+    #request-form {
+        padding: 20px;
+    }
+
+    #request-form input {
+        font-size: 16px;
+    }
+
+    #form-btns {
+        flex-direction: column-reverse;
+    }
+
+    #form-btns button {
+        width: 100%;
     }
 }

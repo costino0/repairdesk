@@ -18,10 +18,40 @@
     </header>
 
     <main id="requests-container">
-        <h2 id="requests-state">No repair requests yet</h2>
+        <div id="requests-header">
+            <h2 id="requests-state">No repair requests yet</h2>
+            <button id="add-repair-btn">New Repair Request</button>
+        </div>
+
         <div id="requests">
 
         </div>
+
+        <form id="request-form" hidden>
+            <div id="name-container">
+                <label for="name">Customer Name</label>
+                <input id="name" name="name" type="text">
+            </div>
+
+            <div id="model-container">
+                <label for="model">Device Model</label>
+                <input id="model" name="model" type="text">
+            </div>
+
+            <div id="problem-container">
+                <label for="problem">Problem Description</label>
+                <input id="problem" name="problem" type="text">
+            </div>
+
+            <div id="form-btns">
+                <button id="cancel-form-btn" type="button">Cancel</button>
+                <button id="submit-form-btn" type="submit">Add Repair Request</button>
+            </div>
+
+            <p id="form-error"></p>
+        </form>
     </main>
+
+    <script src="script.js"></script>
 </body>
 </html>
