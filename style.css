@@ -48,3 +48,19 @@ body {
 #requests-state {
     margin: 0;
 }
+
+@media (max-width: 640px) {
+    #title {
+        font-size: 28px;
+    }
+
+    #description {
+        font-size: 14px;
+        text-align: center;
+        margin: 0 20px 20px 20px;
+    }
+
+    #requests-state {
+        font-size: 22px;
+    }
+}
