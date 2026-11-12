@@ -11,14 +11,14 @@ const problem = document.querySelector('#problem')
 const requests = document.querySelector('#requests')
 
 const localRepairs = localStorage.getItem('repairs')
-const repairs = JSON.parse(localRepairs) || []
+let repairs = JSON.parse(localRepairs) || []
 
 let id = Number(localStorage.getItem('id')) || 1
 
-function renderRequests(repairs) {
+function renderRequests(array) {
     requests.innerHTML = ''
 
-    repairs.forEach(repair => {
+    array.forEach(repair => {
         const article = document.createElement('article')
 
         const title = document.createElement('h3')
@@ -30,7 +30,20 @@ function renderRequests(repairs) {
         const problemEl = document.createElement('p')
         problemEl.textContent = repair.problem
 
-        article.append(title, modelEl, problemEl)
+        const deleteBtn = document.createElement('button')
+        deleteBtn.textContent = 'Delete'
+
+        deleteBtn.addEventListener('click', () => {
+            const confirmed = confirm(`Delete the repair request for ${repair.name}`)
+
+            if (confirmed) {
+                repairs = repairs.filter(request => request.id !== repair.id)
+                renderRequests(repairs)
+                localStorage.setItem('repairs', JSON.stringify(repairs))
+            }
+        })
+
+        article.append(title, modelEl, problemEl, deleteBtn)
         requests.append(article)
     })
 
