@@ -30,8 +30,18 @@ function renderRequests(array) {
         const problemEl = document.createElement('p')
         problemEl.textContent = repair.problem
 
+        const statusEl = document.createElement('p')
+        statusEl.textContent = repair.status
+        statusEl.classList.add('status')
+        statusEl.classList.add(repair.status === 'Completed' ? 'status-completed' : 'status-pending')
+
         const deleteBtn = document.createElement('button')
+        deleteBtn.classList.add('delete-btn')
         deleteBtn.textContent = 'Delete'
+
+        const completedBtn = document.createElement('button')
+        completedBtn.classList.add('complete-btn')
+        completedBtn.textContent = 'Mark as completed'
 
         deleteBtn.addEventListener('click', () => {
             const confirmed = confirm(`Delete the repair request for ${repair.name}`)
@@ -43,7 +53,18 @@ function renderRequests(array) {
             }
         })
 
-        article.append(title, modelEl, problemEl, deleteBtn)
+        completedBtn.addEventListener('click', () => {
+            repair.status = 'Completed'
+            renderRequests(repairs)
+            localStorage.setItem('repairs', JSON.stringify(repairs))
+        })
+
+        article.append(title, modelEl, problemEl, statusEl, deleteBtn)
+
+        if (repair.status !== 'Completed') {
+            article.append(completedBtn)
+        }
+
         requests.append(article)
     })
 
@@ -62,7 +83,8 @@ requestForm.addEventListener('submit', (e) => {
         id,
         name: name.value.trim(),
         model: model.value.trim(),
-        problem: problem.value.trim()
+        problem: problem.value.trim(),
+        status: 'Pending'
     }
 
     id++
