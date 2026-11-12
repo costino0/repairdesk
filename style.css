@@ -243,11 +243,6 @@ body {
     border-color: #3A6073;
 }
 
-#requests button:hover {
-    background-color: #b00020;
-    color: whitesmoke;
-}
-
 /* RESPONSIVE */
 
 @media (max-width: 640px) {
