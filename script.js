@@ -11,7 +11,10 @@ const problem = document.querySelector('#problem')
 const requests = document.querySelector('#requests')
 
 const localRepairs = localStorage.getItem('repairs')
-let repairs = JSON.parse(localRepairs) || []
+let repairs = (JSON.parse(localRepairs) || []).map(repair => ({
+    ...repair,
+    status: repair.status || 'Pending'
+}))
 
 let id = Number(localStorage.getItem('id')) || 1
 
