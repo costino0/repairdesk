@@ -3,6 +3,7 @@ const cancelFormBtn = document.querySelector('#cancel-form-btn')
 const addRepairBtn = document.querySelector('#add-repair-btn')
 const formError = document.querySelector('#form-error')
 const requestsState = document.querySelector('#requests-state')
+const statusSelectEl = document.querySelector('#status-select')
 
 const name = document.querySelector('#name')
 const model = document.querySelector('#model')
@@ -16,12 +17,23 @@ let repairs = (JSON.parse(localRepairs) || []).map(repair => ({
     status: repair.status || 'Pending'
 }))
 
+let statusSelect = 'All'
+
+statusSelectEl.addEventListener('change', () => {
+    statusSelect = statusSelectEl.value
+    renderRequests(repairs)
+})
+
 let id = Number(localStorage.getItem('id')) || 1
 
 function renderRequests(array) {
     requests.innerHTML = ''
 
-    array.forEach(repair => {
+    const visibleRepairs = statusSelect === 'All' 
+        ? array
+        : array.filter(request => request.status === statusSelect)
+
+    visibleRepairs.forEach(repair => {
         const article = document.createElement('article')
 
         const title = document.createElement('h3')
@@ -71,7 +83,15 @@ function renderRequests(array) {
         requests.append(article)
     })
 
-    requestsState.textContent = repairs.length === 0 ? 'No repair requests yet' : `Requests: ${repairs.length}`
+    if (statusSelect === 'All') {
+        requestsState.textContent = visibleRepairs.length === 0 ? 'No repair requests yet' : `Requests: ${visibleRepairs.length}`
+    } else if (statusSelect === 'Pending') {
+        requestsState.textContent = visibleRepairs.length === 0 ? 'No pending repair requests yet' : `Pending requests: ${visibleRepairs.length}`
+    } else if (statusSelect === 'Completed') {
+        requestsState.textContent = visibleRepairs.length === 0 ? 'No completed repair requests yet' : `Completed requests: ${visibleRepairs.length}`
+    }
+
+    // requestsState.textContent = visibleRepairs.length === 0 ? 'No repair requests yet' : `Requests: ${visibleRepairs.length}`
 }
 
 requestForm.addEventListener('submit', (e) => {

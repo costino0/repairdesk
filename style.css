@@ -49,6 +49,12 @@ body {
     margin: 30px;
 }
 
+#requests-left-container {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
 #requests-header {
     display: flex;
     justify-content: space-between;
